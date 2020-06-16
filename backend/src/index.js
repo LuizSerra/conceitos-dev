@@ -3,7 +3,15 @@ const { response } = require('express');
 
 app = express();
 
+app.use(express.json());
+
 app.get('/projects', (request, response) => {
+
+    const {title, owner}  = request.query;
+    
+    console.log(title);
+    console.log(owner);
+
     return response.json(
         [  'Projeto 1',
            'Projeto 2',
@@ -13,6 +21,11 @@ app.get('/projects', (request, response) => {
 });
 
 app.post('/projects', (request, response) => {
+
+    const body = request.body;
+
+    console.log(body);
+    
     return response.json(
         {  'nome'  : 'Site Casas Bahia',
            'tipo'  : 'E-commerce',
@@ -22,6 +35,8 @@ app.post('/projects', (request, response) => {
 });
 
 app.put('/projects/:id', (request, response) => {
+    const {id} = request.params;
+    console.log(id);
     return response.json(
         {  'nome'  : 'Site Casas Bahia',
            'tipo'  : 'Portal',
